@@ -1,0 +1,11 @@
+{
+  "include": [
+    "index.ts",
+    "components/**/*",
+    ".eslintrc.cjs"
+  ],
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "extends": "astro/tsconfigs/strict"
+}
