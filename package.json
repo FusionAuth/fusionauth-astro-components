@@ -1,7 +1,7 @@
 {
   "name": "@fusionauth/fusionauth-astro-components",
   "version": "0.0.1",
-  "description": "Component to fetch code from an external URI",
+  "description": "Set of Astro components to improve the developer experience when writing pages",
   "type": "module",
   "exports": {
     ".": "./index.ts"

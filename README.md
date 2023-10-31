@@ -39,7 +39,7 @@ import { RemoteCode } from '@fusionauth/astro-components';
 <RemoteCode lang="json" url="https://example.com/file.json"/>
 ```
 
-This is equivalent of rendering a `<Code lang="json" code="..." />` with the contents of that JSON file.
+This is equivalent to rendering a `<Code lang="json" code="..." />` with the contents of that JSON file.
 
 ### Props
 
@@ -100,7 +100,7 @@ use the `<RemoteValue>` component to render a specific value from that file.
 ### Usage
 
 A simple usage example for the component (which will cover most cases) is when you have the following JSON file hosted
-somewhere (e.g. GitHub) and you are writing a doc that mention that user.
+somewhere (e.g. GitHub) and you are writing a doc that mentions that user.
 
 ```json
 {
@@ -158,12 +158,12 @@ The `selector` can either be a `string` or a `function`.
 
 ##### Selector Strings
 
-When using `string`, you need to check the specific documentation for the parser we use. As we only have JSON right now,
+When using selector strings, you need to check the specific documentation for the parser we use. As we only have JSON right now,
 please check [`jsonpath-plus`](https://www.npmjs.com/package/jsonpath-plus), which implements an XPath-based syntax.
 
 ##### Selector Functions
 
-When using `function`, we'll pass the parsed file (e.g. the JSON object) as an argument and the function should return
+When using selector functions, we'll pass the parsed file (e.g. the JSON object) as an argument and the function should return
 the value.
 
 ##### Selector Examples
@@ -217,6 +217,15 @@ Rendering inside inline backticks won't work, but you can use standard `<code>` 
 <code><RemoteValue url="..." /></code>
 ```
 
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub.
+
 ## License
 
 This code is available as open source under the terms of the [Apache v2.0 License](https://opensource.org/licenses/Apache-2.0).
+
+## Support
+
+This is created and maintained with love by [FusionAuth](https://fusionauth.io), the customer authentication and
+authorization platform that makes developers' lives awesome.
