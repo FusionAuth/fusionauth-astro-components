@@ -45,6 +45,7 @@ This is equivalent to rendering a `<Code lang="json" code="..." />` with the con
 
 - `url` (required): address with the file to download.
 - `lang` (optional): language for the code (default: `plaintext`).
+- `title` (optional): title of the section, shown as a piece of text above the block.
 - `tags` (optional): tags to extract specific lines from the file.
   See [Lines selection by Tags](#selecting-lines-via-tags).
 
