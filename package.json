@@ -41,9 +41,9 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "astro": "^2.0.0 || ^3.0.0"
+    "astro": "^3.2.4"
   },
   "engines": {
-    "node": ">=16.12.0"
+    "node": ">=18.14.1"
   }
 }
