@@ -1,6 +1,6 @@
 {
   "name": "@fusionauth/fusionauth-astro-components",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Set of Astro components to improve the developer experience when writing pages",
   "type": "module",
   "exports": {
