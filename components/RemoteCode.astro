@@ -36,11 +36,11 @@ export interface Props {
 
 const { url, lang = 'plaintext', tags, title, ...rest } = Astro.props;
 
-const extractCode = async (url: string, tags: string): Promise<string> => {
+const extractCode = async (url: string, tags?: string): Promise<string> => {
   const remoteResponse = await fetch(url);
   const remoteCode = await remoteResponse.text();
 
-  if (tags !== '') {
+  if ((tags !== undefined) && (tags !== '')) {
     return selectTagged(remoteCode, tags);
   }
 
