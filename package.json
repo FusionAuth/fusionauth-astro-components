@@ -1,7 +1,7 @@
 {
   "name": "@fusionauth/astro-components",
   "version": "1.1.1",
-  "description": "Set of Astro components to improve the developer experience when writing pages",
+  "description": "Pull in values from remote JSON files or remote code blocks at build time.",
   "type": "module",
   "exports": {
     ".": "./index.ts"
