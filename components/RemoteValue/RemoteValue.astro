@@ -85,7 +85,6 @@ if (response.ok) {
   throw new Error(`Failed to fetch remote value at [${url}], Reason: [${response.statusText}]`);
 }
 
-
 // Using the selector to look up the value
 // If you don't provide a selector, the entire file will be returned
 if ((value !== null) && (selector !== null)) {

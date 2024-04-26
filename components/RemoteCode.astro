@@ -37,7 +37,6 @@ export interface Props {
 const { url, lang = 'plaintext', tags, title, ...rest } = Astro.props;
 
 const extractCode = async (url: string, tags?: string): Promise<string> => {
-
   const remoteResponse = await fetch(url);
 
   if (remoteResponse.ok) {
@@ -55,7 +54,6 @@ const extractCode = async (url: string, tags?: string): Promise<string> => {
   } else {
     throw new Error(`Failed to fetch remote code at [${url}], Reason: [${await remoteResponse.text()}]`);
   }
-
 };
 
 const remoteSelectedCode = await extractCode(url, tags);
