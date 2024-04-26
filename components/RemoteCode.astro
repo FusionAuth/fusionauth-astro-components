@@ -38,25 +38,25 @@ const { url, lang = 'plaintext', tags, title, ...rest } = Astro.props;
 
 const extractCode = async (url: string, tags?: string): Promise<string> => {
   const remoteResponse = await fetch(url);
-  const remoteCode = await remoteResponse.text();
 
-  if ((tags !== undefined) && (tags !== '')) {
-    return selectTagged(remoteCode, tags);
-  }
+  if (remoteResponse.ok) {
+    const remoteCode = await remoteResponse.text();
 
-  const matchLines = url.match(/.*#L(\d+)(-L(\d+))?$/);
-  if ((matchLines !== null) && (matchLines.length > 0)) {
-    return selectLines(remoteCode, matchLines[1] as number, matchLines[3] as number);
+    if ((tags !== undefined) && (tags !== '')) {
+      return selectTagged(remoteCode, tags);
+    }
+
+    const matchLines = url.match(/.*#L(\d+)(-L(\d+))?$/);
+    if ((matchLines !== null) && (matchLines.length > 0)) {
+      return selectLines(remoteCode, matchLines[1] as number, matchLines[3] as number);
+    }
+    return remoteCode.trim();
+  } else {
+    throw new Error(`Failed to fetch remote code at [${url}], Reason: [${await remoteResponse.text()}]`);
   }
-  return remoteCode.trim();
 };
 
-let remoteSelectedCode = 'not available';
-try {
-  remoteSelectedCode = await extractCode(url, tags);
-} catch (e) {
-  console.log('Couldn\'t retrieve remote code', e);
-}
+const remoteSelectedCode = await extractCode(url, tags);
 
 function selectTagged (content: string, tags: string): string {
   const lines = content.split('\n');

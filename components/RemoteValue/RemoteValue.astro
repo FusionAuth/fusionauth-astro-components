@@ -75,20 +75,20 @@ const { url, selector, parser, default: defaultValue = 'unknown' } = Astro.props
 // Value that will be rendered
 let value;
 
-try {
-  /**
-   * @link https://docs.astro.build/en/guides/data-fetching/
-   */
-  const response = await fetch(url);
+/**
+ * @link https://docs.astro.build/en/guides/data-fetching/
+ */
+const response = await fetch(url);
+if (response.ok) {
   value = await response.text();
+} else {
+  throw new Error(`Failed to fetch remote value at [${url}], Reason: [${response.statusText}]`);
+}
 
-  // Using the selector to look up the value
-  // If you don't provide a selector, the entire file will be returned
-  if ((value !== null) && (selector !== null)) {
-    value = parse(url, value, selector, parser);
-  }
-} catch (e) {
-  console.error(`Error retrieving remote value at ${url}`, selector, e);
+// Using the selector to look up the value
+// If you don't provide a selector, the entire file will be returned
+if ((value !== null) && (selector !== null)) {
+  value = parse(url, value, selector, parser);
 }
 
 // Default value
