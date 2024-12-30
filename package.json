@@ -1,6 +1,6 @@
 {
   "name": "@fusionauth/astro-components",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Pull in values from remote JSON files or remote code blocks at build time.",
   "type": "module",
   "exports": {
@@ -41,7 +41,7 @@
     "typescript": "^5.2.2"
   },
   "peerDependencies": {
-    "astro": "^4.2.1"
+    "astro": ">=4.0.0 <6.0.0"
   },
   "engines": {
     "node": ">=18.14.1"
