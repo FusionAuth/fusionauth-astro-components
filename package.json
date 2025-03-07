@@ -1,6 +1,6 @@
 {
   "name": "@fusionauth/astro-components",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Pull in values from remote JSON files or remote code blocks at build time.",
   "type": "module",
   "exports": {
@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/FusionAuth/fusionauth-astro-components#readme",
   "dependencies": {
-    "jsonpath-plus": "^7.2.0"
+    "jsonpath-plus": "^10.3.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.9.0",
