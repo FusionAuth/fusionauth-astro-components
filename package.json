@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/FusionAuth/fusionauth-astro-components#readme",
   "dependencies": {
-    "jsonpath-plus": "^7.2.0"
+    "jsonpath-plus": "^10.3.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.9.0",
