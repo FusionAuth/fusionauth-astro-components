@@ -8,7 +8,7 @@ import { Code } from 'astro/components';
 export interface Props {
   /**
    * Url to fetch code from.  Also allows selecting specific line(s) of code with
-   * the Github line syntax.
+   * the GitHub line syntax.
    * E.g., https://raw.githubusercontent.com/FusionAuth/fusionauth-example-client-libraries/main/ruby/Gemfile#L3
    */
   url: string;
@@ -22,7 +22,7 @@ export interface Props {
   lang?: string;
 
   /**
-   * Optional tags marking beginning and end of content to include
+   * Optional tags marking the beginning and end of content to include
    * Loosely based on https://docs.asciidoctor.org/asciidoc/latest/directives/include-tagged-regions/
    * Note: Currently only supports one set of tags.
    */
@@ -59,13 +59,18 @@ const extractCode = async (url: string, tags?: string): Promise<string> => {
 const remoteSelectedCode = await extractCode(url, tags);
 
 function selectTagged (content: string, tags: string): string {
-  const lines = content.split('\n');
-
+  let lines = content.split('\n');
   const startLine = lines.findIndex((line) => line.includes(`tag::${tags}`));
   const endLine = lines.findIndex((line) => line.includes(`end::${tags}`));
-  return lines.slice(startLine + 1, endLine)
-    .join('\n')
-    .replace(/\s+$/g, '');
+
+  lines = lines.slice(startLine + 1, endLine);
+  const prefixLengths = lines.filter((line) => line.trim().length > 0).map((line) => prefixSpaces(line));
+  const shortestPrefix = Math.min(...prefixLengths);
+  if (shortestPrefix > 0) {
+    lines = lines.map((line) => line.substring(shortestPrefix));
+  }
+
+  return lines.join('\n').replace(/\s+$/g, '');
 }
 
 function selectLines (content: string, lineNum: number, lineEnd: number): string {
@@ -79,6 +84,16 @@ function selectLines (content: string, lineNum: number, lineEnd: number): string
   }
 
   return content;
+}
+
+function prefixSpaces(str: string): number {
+  let count = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str.charAt(i) == ' ' || str.charAt(i) == '\t') {
+      count++;
+    }
+  }
+  return count;
 }
 ---
 {(title === '' || title === undefined)
