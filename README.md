@@ -21,7 +21,7 @@ Install it via npm:
 $ npm install @fusionauth/astro-components
 ```
 
-> These components were tested with both versions 2 and 3 of Astro.
+> These components were tested with versions 2, 3 and 4 of Astro.
 
 # Components
 
@@ -232,6 +232,9 @@ This is created and maintained with love by [FusionAuth](https://fusionauth.io),
 authorization platform that makes developers' lives awesome.
 
 # Changelog
+
+## 2.1.1
+- Retry logic was added to the RemoteCode fetch method.
 
 ## 2.1.0
 - Components will now throw an `Error` if the fetch of the `url` fails. This is to prevent silent failures when the URL is wrong or the server is down. 
