@@ -64,11 +64,11 @@ const extractCode = async (url: string, tags?: string): Promise<string> => {
         throw new Error(`Non-200 response: ${remoteResponse.status}`);
       }
     } catch (err) {
-      if (attempt < maxRetries - 1) {
+      if (attempt < MAX_RETRIES - 1) {
         const delay = 100 * Math.pow(2, attempt); // 100ms, 200ms, 400ms, ...
         await sleep(delay);
       } else {
-        throw new Error(`Failed to fetch remote code at [${url}] after ${maxRetries} attempts. Last error: ${(err as Error).message}`);
+        throw new Error(`Failed to fetch remote code at [${url}] after ${MAX_RETRIES} attempts. Last error: ${(err as Error).message}`);
       }
     }
   }
