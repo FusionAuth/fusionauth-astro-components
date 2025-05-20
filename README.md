@@ -21,7 +21,7 @@ Install it via npm:
 $ npm install @fusionauth/astro-components
 ```
 
-> These components were tested with both versions 2 and 3 of Astro.
+> These components were tested with versions 2, 3 and 4 of Astro.
 
 # Components
 
@@ -231,10 +231,3 @@ This code is available as open source under the terms of the [Apache v2.0 Licens
 This is created and maintained with love by [FusionAuth](https://fusionauth.io), the customer authentication and
 authorization platform that makes developers' lives awesome.
 
-# Changelog
-
-## 2.1.0
-- Components will now throw an `Error` if the fetch of the `url` fails. This is to prevent silent failures when the URL is wrong or the server is down. 
-
-## 2.0.0
-- Update to be compatible with Astro 4

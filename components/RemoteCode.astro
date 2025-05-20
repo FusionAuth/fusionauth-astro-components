@@ -36,24 +36,45 @@ export interface Props {
 
 const { url, lang = 'plaintext', tags, title, ...rest } = Astro.props;
 
+// max retries of extracting the code
+const MAX_RETRIES = 5;
+
+const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 const extractCode = async (url: string, tags?: string): Promise<string> => {
-  const remoteResponse = await fetch(url);
 
-  if (remoteResponse.ok) {
-    const remoteCode = await remoteResponse.text();
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    try {
+      const remoteResponse = await fetch(url);
 
-    if ((tags !== undefined) && (tags !== '')) {
-      return selectTagged(remoteCode, tags);
+      if (remoteResponse.ok) {
+        const remoteCode = await remoteResponse.text();
+
+        if ((tags !== undefined) && (tags !== '')) {
+          return selectTagged(remoteCode, tags);
+        }
+
+        const matchLines = url.match(/.*#L(\d+)(-L(\d+))?$/);
+        if ((matchLines !== null) && (matchLines.length > 0)) {
+          return selectLines(remoteCode, matchLines[1] as number, matchLines[3] as number);
+        }
+
+        return remoteCode.trim();
+      } else {
+        throw new Error(`Non-200 response: ${remoteResponse.status}`);
+      }
+    } catch (err) {
+      if (attempt < MAX_RETRIES - 1) {
+        const delay = 100 * Math.pow(2, attempt); // 100ms, 200ms, 400ms, ...
+        await sleep(delay);
+      } else {
+        throw new Error(`Failed to fetch remote code at [${url}] after ${MAX_RETRIES} attempts. Last error: ${(err as Error).message}`);
+      }
     }
-
-    const matchLines = url.match(/.*#L(\d+)(-L(\d+))?$/);
-    if ((matchLines !== null) && (matchLines.length > 0)) {
-      return selectLines(remoteCode, matchLines[1] as number, matchLines[3] as number);
-    }
-    return remoteCode.trim();
-  } else {
-    throw new Error(`Failed to fetch remote code at [${url}], Reason: [${await remoteResponse.text()}]`);
   }
+
+  // Should never reach here
+  throw new Error("Unexpected error in extractCode");
 };
 
 const remoteSelectedCode = await extractCode(url, tags);
