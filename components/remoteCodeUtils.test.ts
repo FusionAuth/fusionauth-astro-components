@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 
-import { prefixSpaces, selectTagged } from './remoteCodeUtils';
+import { prefixSpaces, selectTagged } from './remoteCodeUtils.ts';
 
 test('prefixSpaces counts only leading whitespace', () => {
   assert.equal(prefixSpaces('class Example:'), 0);
