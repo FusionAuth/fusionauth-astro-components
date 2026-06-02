@@ -1,5 +1,7 @@
 # `@fusionauth/astro-components`
 
+This has been archived. No further development or releases will take place.
+
 This is a set of components developed by FusionAuth while creating [our docs](https://fusionauth.io)
 with [Astro](https://astro.build/).
 
