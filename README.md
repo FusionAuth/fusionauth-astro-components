@@ -218,6 +218,21 @@ Rendering inside inline backticks won't work, but you can use standard `<code>` 
 <code><RemoteValue url="..." /></code>
 ```
 
+
+## Running Tests
+
+First install dependencies:
+
+```shell
+$ npm install
+```
+
+Then run the test suite:
+
+```shell
+$ npm test
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub.
