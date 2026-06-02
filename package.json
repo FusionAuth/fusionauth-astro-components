@@ -18,7 +18,8 @@
     "highlight"
   ],
   "scripts": {
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "node --test --experimental-strip-types \"components/**/*.test.ts\""
   },
   "author": "FusionAuth <devrel@fusionauth.io>",
   "license": "apache",
